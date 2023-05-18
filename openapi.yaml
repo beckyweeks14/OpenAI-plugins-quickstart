@@ -6,6 +6,24 @@ info:
 servers:
   - url: http://localhost:5003
 paths:
+  /panera/sip-club:
+    get:
+      operationId: getSipClubInfo
+      summary: Get information on Panera Unlimited Sip Club
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSipClubInfoResponse'
   /todos/{username}:
     get:
       operationId: getTodos
@@ -65,6 +83,13 @@ paths:
 
 components:
   schemas:
+    getSipClubInfoResponse:
+      type: object
+      properties:
+        information:
+          type: string
+          description: This is information about Panera Unlimited Sip Club
+          example: This is information about Panera's Unlimited Sip Club
     getTodosResponse:
       type: object
       properties:

@@ -17,6 +17,14 @@ async def add_todo(username):
     _TODOS[username].append(request["todo"])
     return quart.Response(response='OK', status=200)
 
+@app.get("/panera/sip-club/<string:username>")
+async def get_SipClubInfo(username):
+    data = {
+        "information": "This is all the fun information about our unlimited sip club. Would you like to know more?"
+    }
+    dataToSendBack = json.dumps( data )
+    return quart.Response(response=dataToSendBack, status=200)
+
 @app.get("/todos/<string:username>")
 async def get_todos(username):
     return quart.Response(response=json.dumps(_TODOS.get(username, [])), status=200)
